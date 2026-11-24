@@ -23,7 +23,7 @@ A runnable, local-first web demonstrator for the PS02 problem statement. It impo
 
 ## Windows quick start
 
-1. Extract the ZIP.
+1. Extract the ZIP. (https://drive.google.com/drive/folders/1e5NXnHUlbNPQH5cwxn033vzbFq24Rkei?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto)
 2. Open the `TRACEPOINT_AI` folder.
 3. Double-click `start.bat`.
 4. Wait for the server to start, then open http://127.0.0.1:8000
