@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#101312">
+    <meta name="description" content="TRACEPOINT AI — Public-source intelligence triage and investigation workspace.">
+
+    <title>TRACEPOINT AI | Field Intelligence Desk</title>
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- ==================================
+         SIDEBAR
+    =================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">T.</div>
+
+            <div>
+                <b>TRACEPOINT</b>
+                <small>FIELD INTELLIGENCE DESK</small>
+            </div>
+        </div>
+
+        <div class="workspace">
+            <span class="dot"></span>
+            INVESTIGATION WORKSPACE
+            <span class="workspace-id">LOCAL / 01</span>
+        </div>
+
+        <div class="eyebrow" style="padding:0 10px 10px">
+            WORKSPACE
+        </div>
+
+        <nav aria-label="Main navigation">
+
+            <button class="nav active" data-view="overview">
+                <span class="nav-number">01</span>
+                <span>Situation room</span>
+            </button>
+
+            <button class="nav" data-view="feed">
+                <span class="nav-number">02</span>
+                <span>Collected posts</span>
+            </button>
+
+            <button class="nav" data-view="analysis">
+                <span class="nav-number">03</span>
+                <span>Text examination</span>
+            </button>
+
+            <button class="nav" data-view="network">
+                <span class="nav-number">04</span>
+                <span>Connections</span>
+            </button>
+
+            <button class="nav" data-view="evidence">
+                <span class="nav-number">05</span>
+                <span>Case notes</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="secure">
+                <span>●</span> LOCAL DEMONSTRATION
+            </div>
+
+            <p>
+                Public-source intelligence workspace.
+                All model outputs require human verification.
+            </p>
+
+            <div style="margin-top:15px">
+                <span class="eyebrow">SYSTEM VERSION</span>
+                <div style="color:var(--text);margin-top:5px">
+                    TRACEPOINT / 1.0.0
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==================================
+         MAIN APPLICATION
+    =================================== -->
+
+    <main class="main">
+
+        <!-- GLOBAL HEADER -->
+
+        <header class="topbar">
+
+            <div class="header-context">
+
+                <div class="eyebrow">
+                    TRACEPOINT
+                    <span class="eyebrow-divider">/</span>
+                    <span id="crumb">SITUATION ROOM</span>
+                </div>
+
+                <h1 id="page-title">Situation room</h1>
+
+            </div>
+
+            <div class="top-actions">
+
+                <span class="live">
+                    <i></i>
+                    LOCAL API CONNECTED
+                </span>
+
+                <button class="btn ghost" id="export-btn">
+                    ↓ Export JSON
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================
+             01. SITUATION ROOM
+        =================================== -->
+
+        <section id="view-overview" class="view">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow gold">
+                        PUBLIC-SOURCE MONITORING
+                        <span class="eyebrow-divider">/</span>
+                        WORKSPACE 01
+                    </div>
+
+                    <h2>
+                        A clearer view.<br>
+                        <em>Connected evidence.</em>
+                    </h2>
+
+                    <p>
+                        Review public-source activity, identify potentially
+                        suspicious patterns and organize investigative leads
+                        with transparent, human-reviewed intelligence.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <button class="btn primary" data-go="feed">
+                            Review collected posts →
+                        </button>
+
+                        <button class="btn ghost" data-go="analysis">
+                            Examine a post
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-art" aria-hidden="true">
+
+                    <div class="case-sheet">
+
+                        <div class="case-sheet-top">
+                            <span>FIELD NOTE / 024</span>
+                            <span class="case-status">OPEN</span>
+                        </div>
+
+                        <div class="case-rule"></div>
+
+                        <div class="case-lines">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </div>
+
+                        <div class="case-connection">
+                            <span>POST 018</span>
+                            <b></b>
+                            <span>HANDLE</span>
+                            <b></b>
+                            <span>POST 027</span>
+                        </div>
+
+                        <div class="case-sheet-foot">
+                            <span>SHARED INDICATOR</span>
+                            <span>FOR REVIEW</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OVERVIEW METRICS -->
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="eyebrow">WORKSPACE SNAPSHOT</div>
+                    <h3>Current activity</h3>
+                </div>
+
+                <span class="tag">UPDATED FROM LOCAL API</span>
+
+            </div>
+
+
+            <div class="metric-grid">
+
+                <div class="metric">
+                    <span>TOTAL POSTS</span>
+                    <b id="m-total">—</b>
+                    <small>Loaded intelligence records</small>
+                </div>
+
+                <div class="metric">
+                    <span>HIGH RISK</span>
+                    <b class="red" id="m-high">—</b>
+                    <small>Requires priority review</small>
+                </div>
+
+                <div class="metric">
+                    <span>IDENTIFIERS</span>
+                    <b id="m-entities">—</b>
+                    <small>Extracted public indicators</small>
+                </div>
+
+                <div class="metric">
+                    <span>REVIEWED</span>
+                    <b id="m-reviewed">—</b>
+                    <small>Human review status applied</small>
+                </div>
+
+            </div>
+
+
+            <!-- ANALYTICS -->
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="eyebrow">ANALYTICS</div>
+                    <h3>What the data indicates</h3>
+                </div>
+
+            </div>
+
+
+            <div class="two-col">
+
+                <div class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+                            <div class="eyebrow">01 / CLASSIFICATION</div>
+                            <h3>Signal categories</h3>
+                        </div>
+
+                        <span class="tag">DISTRIBUTION</span>
+
+                    </div>
+
+                    <div id="category-bars" class="bars"></div>
+
+                    <p class="footnote">
+                        Classification distribution across imported records.
+                    </p>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+                            <div class="eyebrow">02 / PRIORITIZATION</div>
+                            <h3>Review priority</h3>
+                        </div>
+
+                        <span class="tag">MODEL TRIAGE</span>
+
+                    </div>
+
+                    <div id="risk-bars" class="risk-bars"></div>
+
+                    <p class="footnote">
+                        Risk scores support prioritization. They are not
+                        evidence of guilt or criminal conduct.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT RECORDS -->
+
+            <div class="panel">
+
+                <div class="panel-head">
+
+                    <div>
+                        <div class="eyebrow">LATEST ACTIVITY</div>
+                        <h3>Recently collected records</h3>
+                    </div>
+
+                    <button class="text-btn" data-go="feed">
+                        View complete register →
+                    </button>
+
+                </div>
+
+                <div id="recent-list"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             02. COLLECTED POSTS
+        =================================== -->
+
+        <section id="view-feed" class="view hidden">
+
+            <div class="section-intro">
+
+                <div class="eyebrow">RECORD MANAGEMENT / 02</div>
+
+                <h2>Collected posts</h2>
+
+                <p>
+                    Search, filter and review records gathered from
+                    permitted public sources and uploaded datasets.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH AND FILTERS -->
+
+            <div class="toolbar">
+
+                <div class="search">
+                    ⌕
+                    <input
+                        id="search"
+                        type="search"
+                        placeholder="Search text, source or identifier..."
+                        aria-label="Search collected posts"
+                    >
+                </div>
+
+                <select id="category-filter" aria-label="Filter by category">
+
+                    <option>All</option>
+                    <option>Drugs</option>
+                    <option>Arms</option>
+                    <option>Fake Documents</option>
+                    <option>Financial Fraud</option>
+                    <option>Other</option>
+
+                </select>
+
+                <select id="risk-filter" aria-label="Filter by risk">
+
+                    <option>All</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+
+                </select>
+
+                <label class="btn ghost upload">
+                    ↑ Import dataset
+
+                    <input
+                        type="file"
+                        id="upload-file"
+                        accept=".csv,.json"
+                    >
+                </label>
+
+            </div>
+
+
+            <!-- FEED TABLE / RECORDS -->
+
+            <div class="panel">
+
+                <div class="panel-head">
+
+                    <div>
+                        <div class="eyebrow">SOURCE REGISTER</div>
+
+                        <h3>
+                            Intelligence records
+                            <span class="count" id="feed-count">0</span>
+                        </h3>
+                    </div>
+
+                    <span class="tag">HUMAN REVIEW REQUIRED</span>
+
+                </div>
+
+                <div id="feed-list"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             03. TEXT EXAMINATION
+        =================================== -->
+
+        <section id="view-analysis" class="view hidden">
+
+            <div class="section-intro">
+
+                <div class="eyebrow">ANALYTICAL WORKBENCH / 03</div>
+
+                <h2>Text examination</h2>
+
+                <p>
+                    Examine an individual public post using machine-learning
+                    classification, indicator extraction and transparent
+                    signal detection.
+                </p>
+
+            </div>
+
+
+            <div class="analysis-layout">
+
+
+                <!-- TEXT ANALYSIS -->
+
+                <div class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+                            <div class="eyebrow">01 / INPUT</div>
+                            <h3>Examine a text sample</h3>
+                        </div>
+
+                        <span class="tag">AI CLASSIFIER</span>
+
+                    </div>
+
+                    <p class="muted">
+                        Paste a public post or advertisement below.
+                        The model will suggest a category and identify
+                        relevant text signals.
+                    </p>
+
+                    <label for="analysis-text" class="eyebrow">
+                        SOURCE TEXT
+                    </label>
+
+                    <textarea
+                        id="analysis-text"
+                        placeholder="Paste the public post or advertisement here..."
+                        aria-label="Text to analyse"
+                    ></textarea>
+
+                    <div class="analysis-controls">
+
+                        <button class="btn primary" id="analyse-btn">
+                            Examine text →
+                        </button>
+
+                        <span class="privacy-note">
+                            Local API processing
+                        </span>
+
+                    </div>
+
+                    <div id="analysis-result"></div>
+
+                </div>
+
+
+
+                <!-- DATA IMPORT -->
+
+                <div class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+                            <div class="eyebrow">02 / INGESTION</div>
+                            <h3>Import a dataset</h3>
+                        </div>
+
+                        <span class="tag">CSV / JSON</span>
+
+                    </div>
+
+                    <p class="muted">
+                        Add a collection of records to the workspace.
+                        Include a <code>text</code> column or property.
+                    </p>
+
+                    <div class="dropzone">
+
+                        ⇧
+
+                        <b>Choose a dataset</b>
+
+                        <small>
+                            CSV / JSON · Local processing
+                        </small>
+
+                        <input
+                            type="file"
+                            id="upload-file-2"
+                            accept=".csv,.json"
+                            aria-label="Upload a CSV or JSON dataset"
+                        >
+
+                    </div>
+
+                    <div class="privacy-note">
+                        Only upload data you are authorized to process.
+                        Avoid unnecessary personal or sensitive information.
+                    </div>
+
+
+                    <div class="divider"></div>
+
+
+                    <!-- OPTIONAL TELEGRAM -->
+
+                    <div class="source-section">
+
+                        <div class="eyebrow">
+                            03 / OPTIONAL LIVE SOURCE
+                        </div>
+
+                        <h3>Public Telegram collection</h3>
+
+                        <p class="muted">
+                            Collect recent posts from an authorized
+                            public channel using your configured backend
+                            session and channel allowlist.
+                        </p>
+
+                        <label for="tg-channel" class="eyebrow">
+                            CHANNEL USERNAME
+                        </label>
+
+                        <input
+                            id="tg-channel"
+                            type="text"
+                            placeholder="Enter public channel username"
+                            autocomplete="off"
+                        >
+
+                        <button class="btn ghost" id="tg-collect">
+                            Collect public posts →
+                        </button>
+
+                        <p class="privacy-note">
+                            Restricted to channels configured in
+                            TELEGRAM_PUBLIC_CHANNELS. Private groups
+                            are not supported.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             04. CONNECTIONS
+        =================================== -->
+
+        <section id="view-network" class="view hidden">
+
+            <div class="section-intro">
+
+                <div class="eyebrow">RELATIONSHIP ANALYSIS / 04</div>
+
+                <h2>Connections across records</h2>
+
+                <p>
+                    Explore repeated identifiers and their appearances
+                    across collected posts.
+                </p>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-head">
+
+                    <div>
+                        <div class="eyebrow">ENTITY CORRELATION</div>
+                        <h3>Relationship graph</h3>
+                    </div>
+
+                    <span class="tag">SHARED INDICATORS</span>
+
+                </div>
+
+
+                <div class="graph-description">
+
+                    <p class="muted">
+                        The graph highlights identifiers appearing in
+                        multiple records. Connections represent textual
+                        overlap, not verified relationships, ownership
+                        or coordination.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="graph"
+                    class="graph"
+                    role="region"
+                    aria-label="Relationship graph"
+                >
+
+                    <div class="empty">
+                        Loading relationship graph…
+                    </div>
+
+                </div>
+
+
+                <div id="graph-legend" class="legend"></div>
+
+                <div class="privacy-note">
+                    All graph connections should be independently verified
+                    before being treated as investigative findings.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             05. EVIDENCE AND REVIEW
+        =================================== -->
+
+        <section id="view-evidence" class="view hidden">
+
+            <div class="section-intro">
+
+                <div class="eyebrow">CASE MANAGEMENT / 05</div>
+
+                <h2>Review & case notes</h2>
+
+                <p>
+                    Maintain a human-reviewed record of collected
+                    intelligence and track the status of each item.
+                </p>
+
+            </div>
+
+
+            <div class="metric-grid">
+
+                <div class="metric">
+                    <span>REVIEW STANDARD</span>
+                    <b style="font-size:19px">Human</b>
+                    <small>Manual assessment required</small>
+                </div>
+
+                <div class="metric">
+                    <span>RECORD INTEGRITY</span>
+                    <b style="font-size:19px">Source</b>
+                    <small>Original references retained</small>
+                </div>
+
+                <div class="metric">
+                    <span>STATUS CONTROL</span>
+                    <b style="font-size:19px">Active</b>
+                    <small>Review workflow enabled</small>
+                </div>
+
+                <div class="metric">
+                    <span>EXPORT</span>
+                    <b style="font-size:19px">JSON</b>
+                    <small>Structured evidence export</small>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-head">
+
+                    <div>
+                        <div class="eyebrow">INVESTIGATION REGISTER</div>
+                        <h3>Evidence review queue</h3>
+                    </div>
+
+                    <span class="tag">MANUAL REVIEW</span>
+
+                </div>
+
+                <p class="muted">
+                    Preserve the original text and source reference.
+                    Update each review status only after human assessment.
+                </p>
+
+                <div id="evidence-list"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             FOOTER
+        =================================== -->
+
+        <footer>
+            TRACEPOINT AI
+            <span>·</span>
+            PUBLIC-SOURCE INTELLIGENCE
+            <span>·</span>
+            HUMAN VERIFICATION REQUIRED
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- GLOBAL NOTIFICATION -->
+
+<div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+<!-- APPLICATION LOGIC -->
+
+<script src="/app.js"></script>
+
+</body>
+</html>
